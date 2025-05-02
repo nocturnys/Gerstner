@@ -4,7 +4,7 @@ import { OrbitControls } from '@react-three/drei/core/OrbitControls';
 import * as THREE from 'three';
 
 // Компонент, создающий волновой эффект
-const WaveParticlesEffect = ({ count = 1000, waveStrength = 1.5 }) => {
+const WaveParticlesEffect = ({ count = 100, waveStrength = 1.5 }) => {
   const particles = useRef<THREE.Points>(null);
   const orbits = useRef<THREE.LineSegments>(null);
   
@@ -60,7 +60,7 @@ const WaveParticlesEffect = ({ count = 1000, waveStrength = 1.5 }) => {
     
     // Для каждого слоя
     for (let layer = 0; layer < layers; layer++) {
-      const y = 5 - layer * 0.7; // Распределяем слои по вертикали более плотно
+      const y = 5 - layer * 0.6; // Распределяем слои по вертикали более плотно
       const layerPointCount = particles_per_layer[layer];
       
       // Размер окружности зависит от слоя - верхние слои имеют большие окружности
@@ -107,7 +107,7 @@ const WaveParticlesEffect = ({ count = 1000, waveStrength = 1.5 }) => {
         
         // Цвет частицы - верхние слои ярче
         // Увеличиваем яркость частиц для большей заметности
-        const brightness = 0.85 + (1 - layerRatio) * 0.3;
+        const brightness = 10.85 + (1 - layerRatio) * 0.3;
         const r = 0.3 * brightness;
         const g = 0.7 * brightness;
         const b = 1.0 * brightness;
@@ -120,7 +120,7 @@ const WaveParticlesEffect = ({ count = 1000, waveStrength = 1.5 }) => {
         const segments = 32; // Меньше сегментов для оптимизации
         
         // Цвет орбиты зависит от слоя, но делаем менее насыщенным
-        const orbitColor = new THREE.Color(r * 0.3, g * 0.3, b * 0.4);
+        const orbitColor = new THREE.Color(r * 0.2, g * 0.2, b * 0.3);
         
         const orbitStartIndex = orbitVertices.length / 3;
         
@@ -220,7 +220,7 @@ const WaveParticlesEffect = ({ count = 1000, waveStrength = 1.5 }) => {
     // Длина волны - определяет, сколько волн видно одновременно
     const wavelength = 12;
     // Ширина экрана (такая же как при генерации частиц)
-    const screenWidth = 30;
+    const screenWidth = 27;
     
     for (let i = 0; i < data.count; i++) {
       const i3 = i * 3;
